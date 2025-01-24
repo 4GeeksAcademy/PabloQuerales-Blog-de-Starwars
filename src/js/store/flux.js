@@ -6,13 +6,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			people: [],
 			planets: [],
 			starships: [],
+			endPoints: ["people", "planets", "starships"],
 			endPointPeople: "people",
 			endPointPlanets: "planets",
 			endPointStarships: "starships",
-			detailsId: []
+			infoDetail: ""
 		},
 		actions: {
-
 			getInfoCard: async (endPoint) => {
 				const requestOptions = {
 					method: "GET",
@@ -21,25 +21,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const response = await fetch(`https://www.swapi.tech/api/${endPoint}`, requestOptions);
 					const result = await response.json();
-					setStore({ [endPoint]: result.results })
-					const store = getStore()
-					const uid = store.people.map((e) => {return e.uid})
-					console.log(uid);
-					
+					const detailedPeople = await Promise.all
+						(
+							result.results.map(async (personAllInfo) => {
+								const detailResponse = await fetch(`${personAllInfo.url}`, requestOptions);
+								const detailResult = await detailResponse.json();
+								return detailResult.result.properties;
+							})
+						)
+					setStore({ [endPoint]: detailedPeople })
 				} catch (error) {
 					console.error(error);
 				}
 			},
-			getDetailPeoples: async (endPoint, id) => {
+			getDetails: async (endPoint) => {
 				const requestOptions = {
 					method: "GET",
 					redirect: "follow"
 				};
-
 				try {
-					const response = await fetch(`https://www.swapi.tech/api/${endPoint}/${id}`, requestOptions);
+					const response = await fetch(`${endPoint}`, requestOptions);
 					const result = await response.json();
-					console.log(result)
+					setStore({infoDetail: result.result.properties});
 				} catch (error) {
 					console.error(error);
 				}
