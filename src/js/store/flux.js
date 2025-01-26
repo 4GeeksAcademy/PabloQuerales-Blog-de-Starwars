@@ -7,10 +7,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			planets: [],
 			starships: [],
 			endPoints: ["people", "planets", "starships"],
-			endPointPeople: "people",
-			endPointPlanets: "planets",
-			endPointStarships: "starships",
-			infoDetail: ""
+			infoDetail: "",
+			infoId: "",
+			favoriteArray: [],
 		},
 		actions: {
 			getInfoCard: async (endPoint) => {
@@ -26,7 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							result.results.map(async (personAllInfo) => {
 								const detailResponse = await fetch(`${personAllInfo.url}`, requestOptions);
 								const detailResult = await detailResponse.json();
-								return detailResult.result.properties;
+								return detailResult.result;
 							})
 						)
 					setStore({ [endPoint]: detailedPeople })
@@ -42,10 +41,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const response = await fetch(`${endPoint}`, requestOptions);
 					const result = await response.json();
-					setStore({infoDetail: result.result.properties});
+					setStore({ infoDetail: result.result.properties });
+					const store = getStore()
+
 				} catch (error) {
 					console.error(error);
 				}
+			},
+			setFavoriteArray: (newFavorite) => {
+				const store = getStore()
+				setStore({ favoriteArray: store.favoriteArray.concat([newFavorite]) })
+			},
+			deleteFavorite: (name) => {
+				const store = getStore()
+				const newFavoriteArray = store.favoriteArray.filter((element)=>{
+					return name !== element
+				});
+				setStore({favoriteArray: newFavoriteArray})
 			},
 		}
 	}
