@@ -1,8 +1,9 @@
 import React from "react";
-import { DetailedCard } from "../component/detailedCard";
+import { DetailedCardPeople } from "../component/detailedCardPeople";
+import { DetailedCardPlanets } from "../component/detailedCardPlanets";
 
 export const InfoItem = () => {
     return (
-        <DetailedCard />
+        <DetailedCardPlanets/>
     )
 }

@@ -10,6 +10,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			infoDetail: "",
 			infoId: "",
 			favoriteArray: [],
+			likeValidator: false,
+			likeButton: "bi-heart",
 		},
 		actions: {
 			getInfoCard: async (endPoint) => {
@@ -18,9 +20,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					redirect: "follow"
 				};
 				try {
-					const response = await fetch(`https://www.swapi.tech/api/${endPoint}`, requestOptions);
-					const result = await response.json();
-					const detailedPeople = await Promise.all
+					if (JSON.parse(localStorage.getItem([endPoint])) == null){
+						const response = await fetch(`https://www.swapi.tech/api/${endPoint}`, requestOptions);
+						const result = await response.json();
+						const detailedPeople = await Promise.all
 						(
 							result.results.map(async (personAllInfo) => {
 								const detailResponse = await fetch(`${personAllInfo.url}`, requestOptions);
@@ -28,7 +31,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 								return detailResult.result;
 							})
 						)
-					setStore({ [endPoint]: detailedPeople })
+						localStorage.setItem([endPoint], JSON.stringify(detailedPeople));
+						setStore({ [endPoint]: detailedPeople })
+					} else{
+						setStore({[endPoint]:JSON.parse(localStorage.getItem([endPoint]))})						
+					}
 				} catch (error) {
 					console.error(error);
 				}
@@ -54,11 +61,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			deleteFavorite: (name) => {
 				const store = getStore()
-				const newFavoriteArray = store.favoriteArray.filter((element)=>{
+				const newFavoriteArray = store.favoriteArray.filter((element) => {
 					return name !== element
 				});
-				setStore({favoriteArray: newFavoriteArray})
+				setStore({ favoriteArray: newFavoriteArray })
 			},
+			// favoriteList: (name) => {
+			// 	const store = getStore()
+			// 	const actions = getActions()
+
+			// 	if (!store.likeValidator) {
+			// 		actions.setFavoriteArray(name);
+			// 		setStore({likeButton:"bi-heart-fill"})
+			// 		setStore({likeValidator: true})
+			// 	} else {
+			// 		actions.deleteFavorite(name);
+			// 		setStore({likeButton:"bi-heart"})
+			// 		setStore({likeValidator: false})
+			// 	}
+			// },
 		}
 	}
 }

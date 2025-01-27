@@ -13,3 +13,10 @@ i{
 p{
     margin-bottom: 7px;
 }
+.scrollmenu {
+    display: flex;
+    overflow-x: auto
+}
+.card{
+    min-width: 18rem
+}

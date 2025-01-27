@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState,useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
@@ -11,6 +11,7 @@ export const Card = (props) => {
     }
     const favoriteList = () => {
         if (!likeValidator) {
+            console.log(store.favoriteArray)
             actions.setFavoriteArray(props.name);
             setLikeButton("bi-heart-fill")
             setLikeValidator(true)
@@ -20,9 +21,16 @@ export const Card = (props) => {
             setLikeValidator(false)
         }
     }
+useEffect(()=>{
+    if(!store.favoriteArray.includes((props.name))){
+        store.favoriteArray
+        setLikeValidator(false)
+        setLikeButton("bi-heart")
+    };
+},[store.favoriteArray])
 
     return (
-        <div className="card m-3" style={{ width: "18rem" }} >
+        <div className="card m-3">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnx2mHFJ6WCHnhWVRO3Ge2BoqECvXwgmjhWw&s" loading="lazy" className="card-img-top" alt="..." />
             <div className="card-body">
                 <h5 className="card-title">{props.name}</h5>
