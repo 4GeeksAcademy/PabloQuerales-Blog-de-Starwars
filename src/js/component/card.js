@@ -3,18 +3,26 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 export const Card = (props) => {
-
-    const {store, actions} = useContext(Context)
+    const [likeButton, setLikeButton] = useState("bi-heart")
+    const [likeValidator, setLikeValidator] = useState(false)
+    const { store, actions } = useContext(Context)
     const handleClick = () => {
         actions.getDetails(props.url)
     }
-    const favoriteList = ()=>{
-        actions.setFavoriteArray(props.name);
-        
+    const favoriteList = () => {
+        if (!likeValidator) {
+            actions.setFavoriteArray(props.name);
+            setLikeButton("bi-heart-fill")
+            setLikeValidator(true)
+        } else {
+            actions.deleteFavorite(props.name);
+            setLikeButton("bi-heart")
+            setLikeValidator(false)
+        }
     }
 
     return (
-        <div className="card" style={{ width: "18rem" }} >
+        <div className="card m-3" style={{ width: "18rem" }} >
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnx2mHFJ6WCHnhWVRO3Ge2BoqECvXwgmjhWw&s" loading="lazy" className="card-img-top" alt="..." />
             <div className="card-body">
                 <h5 className="card-title">{props.name}</h5>
@@ -30,7 +38,7 @@ export const Card = (props) => {
                 <p>{props.cargo_capacity}</p>
                 <div className="d-flex justify-content-between">
                     <Link to={`info/${props.gender}/${props.terrain}`} ><button className="btn btn-primary" onClick={handleClick}>Learn More!</button></Link>
-                    <i className="bi bi-heart btn border" onClick={favoriteList}></i>
+                    <i className={`bi ${likeButton}`} onClick={favoriteList}></i>
                 </div>
             </div>
         </div >

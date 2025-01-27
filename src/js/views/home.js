@@ -10,8 +10,8 @@ export const Home = () => {
 		store.endPoints.map((endPoint)=>{actions.getInfoCard(endPoint)})
 	}, [])
 	return (
-		<div className="container">
-			<div className="row">
+		<div className="container mt-3">
+			<div className="row d-flex justify-content-center">
 				<h2>Personajes</h2>
 				{store.people.map((people) => {
 					return (
