@@ -33,6 +33,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						)
 						localStorage.setItem([endPoint], JSON.stringify(detailedPeople));
 						setStore({ [endPoint]: detailedPeople })
+						const store = getStore()
+						console.log("ASAASADA");
+						
 					} else{
 						setStore({[endPoint]:JSON.parse(localStorage.getItem([endPoint]))})						
 					}
@@ -49,8 +52,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const response = await fetch(`${endPoint}`, requestOptions);
 					const result = await response.json();
 					setStore({ infoDetail: result.result.properties });
-					const store = getStore()
-
 				} catch (error) {
 					console.error(error);
 				}
@@ -66,20 +67,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 				setStore({ favoriteArray: newFavoriteArray })
 			},
-			// favoriteList: (name) => {
-			// 	const store = getStore()
-			// 	const actions = getActions()
-
-			// 	if (!store.likeValidator) {
-			// 		actions.setFavoriteArray(name);
-			// 		setStore({likeButton:"bi-heart-fill"})
-			// 		setStore({likeValidator: true})
-			// 	} else {
-			// 		actions.deleteFavorite(name);
-			// 		setStore({likeButton:"bi-heart"})
-			// 		setStore({likeValidator: false})
-			// 	}
-			// },
 		}
 	}
 }

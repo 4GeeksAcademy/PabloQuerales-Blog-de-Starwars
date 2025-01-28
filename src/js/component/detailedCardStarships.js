@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 
-export const DetailedCardPlanets = () => {
+export const DetailedCardStarships = () => {
     const { store } = useContext(Context)
 
     return (
@@ -22,24 +22,25 @@ export const DetailedCardPlanets = () => {
                     <p className="text-center">{store.infoDetail.name}</p>
                 </div>
                 <div className="col-2">
-                    <h3>Climate</h3>
-                    <p className="text-center">{store.infoDetail.climate}</p>
+                    <h3>Passengers
+                    </h3>
+                    <p className="text-center">{store.infoDetail.passengers}</p>
                 </div>
                 <div className="col-2">
-                    <h3>Diameter</h3>
-                    <p className="text-center">{store.infoDetail.diameter}</p>
+                    <h3>Length</h3>
+                    <p className="text-center">{store.infoDetail.length}</p>
                 </div>
                 <div className="col-2">
-                    <h3>terrain</h3>
-                    <p className="text-center">{store.infoDetail.terrain}</p>
+                    <h3>Cargo Capacity</h3>
+                    <p className="text-center">{store.infoDetail.cargo_capacity}</p>
+                </div>
+                <div className="col-2 ">
+                    <h3>Cost In Credits</h3>
+                    <p className="text-center">{store.infoDetail.cost_in_credits}</p>
                 </div>
                 <div className="col-2">
-                    <h3>population</h3>
-                    <p className="text-center">{store.infoDetail.population}</p>
-                </div>
-                <div className="col-2">
-                    <h3>gravity</h3>
-                    <p className="text-center">{store.infoDetail.gravity}</p>
+                    <h3>Manufacturer</h3>
+                    <p className="text-center">{store.infoDetail.manufacturer}</p>
                 </div>
             </div>
         </div>

@@ -1,33 +1,52 @@
-import React, { useContext, useState,useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 export const Card = (props) => {
     const [likeButton, setLikeButton] = useState("bi-heart")
     const [likeValidator, setLikeValidator] = useState(false)
+    const [typeView, setTypeView] = useState("camilo")
+
     const { store, actions } = useContext(Context)
     const handleClick = () => {
         actions.getDetails(props.url)
     }
     const favoriteList = () => {
         if (!likeValidator) {
-            console.log(store.favoriteArray)
             actions.setFavoriteArray(props.name);
             setLikeButton("bi-heart-fill")
             setLikeValidator(true)
+            if (store.people.find(item => item.properties.name == props.name)) {
+                setTypeView("people")
+            } else if (store.planets.find(item => item.properties.name == props.name)) {
+                setTypeView("planets")
+            } else if (store.starships.find(item => item.properties.name == props.name)) {
+                setTypeView("starships")
+            } else {
+                console.log("no se pudo camilo :((((");
+            }
         } else {
             actions.deleteFavorite(props.name);
             setLikeButton("bi-heart")
             setLikeValidator(false)
+            console.log(typeView);
+            
         }
     }
-useEffect(()=>{
-    if(!store.favoriteArray.includes((props.name))){
-        store.favoriteArray
-        setLikeValidator(false)
-        setLikeButton("bi-heart")
-    };
-},[store.favoriteArray])
+    useEffect(() => {
+        if (!store.favoriteArray.includes(props.name)) {
+            store.favoriteArray
+            setLikeValidator(false)
+            setLikeButton("bi-heart")
+        };
+        if (store.people.find(item => item.properties.name == props.name)) {
+            setTypeView("people")
+        } else if (store.planets.find(item => item.properties.name == props.name)) {
+            setTypeView("planets")
+        } else if (store.starships.find(item => item.properties.name == props.name)) {
+            setTypeView("starships")
+        }
+    }, [store.favoriteArray])
 
     return (
         <div className="card m-3">
@@ -45,7 +64,7 @@ useEffect(()=>{
                 <p>{props.model}</p>
                 <p>{props.cargo_capacity}</p>
                 <div className="d-flex justify-content-between">
-                    <Link to={`info/${props.gender}/${props.terrain}`} ><button className="btn btn-primary" onClick={handleClick}>Learn More!</button></Link>
+                    <Link to={`info/${typeView}/${props.uid}`} ><button className="btn btn-primary" onClick={handleClick}>Learn More!</button></Link>
                     <i className={`bi ${likeButton}`} onClick={favoriteList}></i>
                 </div>
             </div>

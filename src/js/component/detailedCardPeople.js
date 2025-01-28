@@ -19,27 +19,27 @@ export const DetailedCardPeople = () => {
             <div className="row ">
                 <div className="col-2">
                     <h3>Name</h3>
-                    <p>{store.infoDetail.name}</p>
+                    <p className="text-center">{store.infoDetail.name}</p>
                 </div>
                 <div className="col-2">
                     <h3>Birthday Year</h3>
-                    <p>{store.infoDetail.birth_year}</p>
+                    <p className="text-center">{store.infoDetail.birth_year}</p>
                 </div>
                 <div className="col-2">
                     <h3>Gender</h3>
-                    <p>{store.infoDetail.gender}</p>
+                    <p className="text-center">{store.infoDetail.gender}</p>
                 </div>
                 <div className="col-2">
                     <h3>Height</h3>
-                    <p>{store.infoDetail.height}</p>
+                    <p className="text-center">{store.infoDetail.height}</p>
                 </div>
                 <div className="col-2">
                     <h3>Skin Color</h3>
-                    <p>{store.infoDetail.skin_color}</p>
+                    <p className="text-center">{store.infoDetail.skin_color}</p>
                 </div>
                 <div className="col-2">
                     <h3>Eye Colors</h3>
-                    <p>{store.infoDetail.eye_color}</p>
+                    <p className="text-center">{store.infoDetail.eye_color}</p>
                 </div>
             </div>
         </div>
