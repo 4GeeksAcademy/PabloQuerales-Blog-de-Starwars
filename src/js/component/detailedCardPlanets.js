@@ -19,27 +19,27 @@ export const DetailedCardPlanets = () => {
             <div className="row ">
                 <div className="col-2">
                     <h3>Name</h3>
-                    <p className="text-center">{store.infoDetail.name}</p>
+                    <p>{store.infoDetail.name}</p>
                 </div>
                 <div className="col-2">
                     <h3>Climate</h3>
-                    <p className="text-center">{store.infoDetail.climate}</p>
+                    <p>{store.infoDetail.climate}</p>
                 </div>
                 <div className="col-2">
                     <h3>Diameter</h3>
-                    <p className="text-center">{store.infoDetail.diameter}</p>
+                    <p>{store.infoDetail.diameter}</p>
                 </div>
                 <div className="col-2">
                     <h3>terrain</h3>
-                    <p className="text-center">{store.infoDetail.terrain}</p>
+                    <p>{store.infoDetail.terrain}</p>
                 </div>
                 <div className="col-2">
                     <h3>population</h3>
-                    <p className="text-center">{store.infoDetail.population}</p>
+                    <p>{store.infoDetail.population}</p>
                 </div>
                 <div className="col-2">
                     <h3>gravity</h3>
-                    <p className="text-center">{store.infoDetail.gravity}</p>
+                    <p>{store.infoDetail.gravity}</p>
                 </div>
             </div>
         </div>

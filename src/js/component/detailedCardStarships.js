@@ -19,28 +19,28 @@ export const DetailedCardStarships = () => {
             <div className="row ">
                 <div className="col-2">
                     <h3>Name</h3>
-                    <p className="text-center">{store.infoDetail.name}</p>
+                    <p>{store.infoDetail.name}</p>
                 </div>
                 <div className="col-2">
                     <h3>Passengers
                     </h3>
-                    <p className="text-center">{store.infoDetail.passengers}</p>
+                    <p>{store.infoDetail.passengers}</p>
                 </div>
                 <div className="col-2">
                     <h3>Length</h3>
-                    <p className="text-center">{store.infoDetail.length}</p>
+                    <p>{store.infoDetail.length}</p>
                 </div>
                 <div className="col-2">
                     <h3>Cargo Capacity</h3>
-                    <p className="text-center">{store.infoDetail.cargo_capacity}</p>
+                    <p>{store.infoDetail.cargo_capacity}</p>
                 </div>
                 <div className="col-2 ">
                     <h3>Cost In Credits</h3>
-                    <p className="text-center">{store.infoDetail.cost_in_credits}</p>
+                    <p>{store.infoDetail.cost_in_credits}</p>
                 </div>
                 <div className="col-2">
                     <h3>Manufacturer</h3>
-                    <p className="text-center">{store.infoDetail.manufacturer}</p>
+                    <p>{store.infoDetail.manufacturer}</p>
                 </div>
             </div>
         </div>

@@ -16,21 +16,10 @@ export const Card = (props) => {
             actions.setFavoriteArray(props.name);
             setLikeButton("bi-heart-fill")
             setLikeValidator(true)
-            if (store.people.find(item => item.properties.name == props.name)) {
-                setTypeView("people")
-            } else if (store.planets.find(item => item.properties.name == props.name)) {
-                setTypeView("planets")
-            } else if (store.starships.find(item => item.properties.name == props.name)) {
-                setTypeView("starships")
-            } else {
-                console.log("no se pudo camilo :((((");
-            }
         } else {
             actions.deleteFavorite(props.name);
             setLikeButton("bi-heart")
             setLikeValidator(false)
-            console.log(typeView);
-            
         }
     }
     useEffect(() => {

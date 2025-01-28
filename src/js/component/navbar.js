@@ -19,7 +19,7 @@ export const Navbar = () => {
 				<ul className="dropdown-menu dropdown-menu-end">
 					{store.favoriteArray.length > 0 ? store.favoriteArray.map((name) => {
 						return (
-							<li className="dropdown-item d-flex justify-content-between"><span>{name}</span><i className="bi bi-trash3" onClick={deleteFavorite}></i></li>
+							<li className="dropdown-item d-flex justify-content-between" key={name}><span>{name}</span><i className="bi bi-trash3" onClick={deleteFavorite}></i></li>
 						)
 					}) : <span className="dropdown-item">empty</span>}
 				</ul>
