@@ -1,14 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 
 export const DetailedCardPlanets = (props) => {
     const { store } = useContext(Context)
+    const [src, setSrc] = useState("")
 
+    useEffect(() => {
+        if (props.params.id == 1){
+            setSrc("https://starwars-visualguide.com/assets/img/placeholder.jpg")
+        } else{
+            setSrc(`https://starwars-visualguide.com/assets/img/planets/${props.params.id}.jpg`)
+        }
+}, [])
     return (
         <div className="container">
             <div className="row">
                 <div className="col-6">
-                    <img src={`https://starwars-visualguide.com/assets/img/planets/${props.params.id}.jpg`} style={{ width: "400px" }} />
+                    <img src={src} style={{ width: "400px" }} />
                 </div>
                 <div className="col-6">
                     <h1>{store.infoDetail.name}</h1>
