@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../styles/home.css";
 import { Card } from "../component/card";
 import { Context } from "../store/appContext";
@@ -6,6 +6,9 @@ import { PlaceholderCard } from "../component/placeholderCard";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context)
+	const [img, setImg] = useState("https://starwars-visualguide.com/assets/img/characters/1.jpg")
+	const [imgPlanets, setImgPlanets] = useState("https://starwars-visualguide.com/assets/img/planets/1.jpg")
+	const [imgStarships, setImgStarships] = useState("https://starwars-visualguide.com/assets/img/starships/1.jpg")
 
 	useEffect(() => {
 		store.endPoints.map((endPoint) => { actions.getInfoCard(endPoint) })

@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 
-export const DetailedCardStarships = () => {
+export const DetailedCardStarships = (props) => {
     const { store } = useContext(Context)
 
     return (
         <div className="container">
             <div className="row">
                 <div className="col-6">
-                    <img src="https://www.pizzaraj.sk/wp-content/uploads/2016/03/800x600-ph-1.jpg" style={{ width: "400px" }} />
+                    <img src={`https://starwars-visualguide.com/assets/img/starships/${props.params.id}.jpg`} style={{ width: "400px" }} />
                 </div>
                 <div className="col-6">
                     <h1>{store.infoDetail.name}</h1>

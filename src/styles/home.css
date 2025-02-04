@@ -18,5 +18,13 @@ p{
     overflow-x: auto
 }
 .card{
-    min-width: 18rem
+    min-width: 14rem;
+}
+.card img{
+    width: 160px;
+    height: 210px;
+}
+.img-style{
+    display: flex;
+    justify-content: center;
 }

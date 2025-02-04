@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 
-export const DetailedCardPlanets = () => {
+export const DetailedCardPlanets = (props) => {
     const { store } = useContext(Context)
 
     return (
         <div className="container">
             <div className="row">
                 <div className="col-6">
-                    <img src="https://www.pizzaraj.sk/wp-content/uploads/2016/03/800x600-ph-1.jpg" style={{ width: "400px" }} />
+                    <img src={`https://starwars-visualguide.com/assets/img/planets/${props.params.id}.jpg`} style={{ width: "400px" }} />
                 </div>
                 <div className="col-6">
                     <h1>{store.infoDetail.name}</h1>
@@ -30,15 +30,15 @@ export const DetailedCardPlanets = () => {
                     <p>{store.infoDetail.diameter}</p>
                 </div>
                 <div className="col-2">
-                    <h3>terrain</h3>
+                    <h3>Terrain</h3>
                     <p>{store.infoDetail.terrain}</p>
                 </div>
                 <div className="col-2">
-                    <h3>population</h3>
+                    <h3>Population</h3>
                     <p>{store.infoDetail.population}</p>
                 </div>
                 <div className="col-2">
-                    <h3>gravity</h3>
+                    <h3>Gravity</h3>
                     <p>{store.infoDetail.gravity}</p>
                 </div>
             </div>

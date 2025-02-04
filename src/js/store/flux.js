@@ -9,6 +9,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			endPoints: ["people", "planets", "starships"],
 			infoDetail: [],
 			favoriteArray: [],
+			img: ["characters", "planets", "starships"],
+			imgBox: ""
 		},
 		actions: {
 			getInfoCard: async (endPoint) => {
@@ -17,7 +19,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					redirect: "follow"
 				};
 				try {
-					if (JSON.parse(localStorage.getItem([endPoint])) == null) {
+					if (JSON.parse(localStorage.getItem((endPoint))) == null) {
 						const response = await fetch(`https://www.swapi.tech/api/${endPoint}`, requestOptions);
 						const result = await response.json();
 						const detailedPeople = await Promise.all
@@ -28,13 +30,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 									return detailResult.result;
 								})
 							)
-						localStorage.setItem([endPoint], JSON.stringify(detailedPeople));
+						localStorage.setItem((endPoint), JSON.stringify(detailedPeople));
 						setStore({ [endPoint]: detailedPeople })
-						const store = getStore()
-						console.log("ASAASADA");
-
 					} else {
-						setStore({ [endPoint]: JSON.parse(localStorage.getItem([endPoint])) })
+						setStore({ [endPoint]: JSON.parse(localStorage.getItem((endPoint))) })
 					}
 				} catch (error) {
 					console.error(error);
