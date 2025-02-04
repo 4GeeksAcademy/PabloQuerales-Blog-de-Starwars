@@ -42,10 +42,11 @@ export const Card = (props) => {
         }
     }, [store.favoriteArray])
 
+
     return (
         <div className="card m-3">
             <div className="img-style">
-                <img src={`https://starwars-visualguide.com/assets/img/${typeImg}/${props.uid}.jpg`} loading="lazy" className={`card-img-top ${typeView}`} alt="..." />
+                <img src={`https://starwars-visualguide.com/assets/img/${typeImg}/${props.uid}.jpg`} loading="lazy" className="card-img-top" alt="..." />
             </div>
             <div className="card-body">
                 <h5 className="card-title">{props.name}</h5>

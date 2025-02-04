@@ -9,8 +9,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			endPoints: ["people", "planets", "starships"],
 			infoDetail: [],
 			favoriteArray: [],
-			img: ["characters", "planets", "starships"],
-			imgBox: ""
 		},
 		actions: {
 			getInfoCard: async (endPoint) => {
