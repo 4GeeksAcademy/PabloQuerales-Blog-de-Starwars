@@ -6,7 +6,7 @@ export const Card = (props) => {
     const [likeButton, setLikeButton] = useState("bi-heart")
     const [likeValidator, setLikeValidator] = useState(false)
     const [typeView, setTypeView] = useState("")
-    const [typeImg, setTypeImg] = useState(typeView)
+    const [src, setSrc] = useState("")
 
     const { store, actions } = useContext(Context)
     const handleClick = () => {
@@ -31,14 +31,25 @@ export const Card = (props) => {
         };
         if (store.people.find(item => item.properties.name == props.name)) {
             setTypeView("people")
-            setTypeImg("characters")
+            setSrc(`https://starwars-visualguide.com/assets/img/characters/${props.uid}.jpg`)
 
         } else if (store.planets.find(item => item.properties.name == props.name)) {
             setTypeView("planets")
-            setTypeImg("planets")
+            if (props.uid == 1) {
+                setSrc("https://starwars-visualguide.com/assets/img/placeholder.jpg")
+            } else {
+                setSrc(`https://starwars-visualguide.com/assets/img/planets/${props.uid}.jpg`)
+            }
         } else if (store.starships.find(item => item.properties.name == props.name)) {
             setTypeView("starships")
-            setTypeImg("starships")
+            setSrc(`https://starwars-visualguide.com/assets/img/starships/${props.uid}.jpg`)
+            if (props.uid == 2) {
+                setSrc("https://starwars-visualguide.com/assets/img/placeholder.jpg")
+            } else if (props.uid == 3) {
+                setSrc("https://starwars-visualguide.com/assets/img/placeholder.jpg")
+            } else {
+                setSrc(`https://starwars-visualguide.com/assets/img/starships/${props.uid}.jpg`)
+            }
         }
     }, [store.favoriteArray])
 
@@ -46,7 +57,7 @@ export const Card = (props) => {
     return (
         <div className="card m-3">
             <div className="img-style">
-                <img src={`https://starwars-visualguide.com/assets/img/${typeImg}/${props.uid}.jpg`} loading="lazy" className="card-img-top" alt="..." />
+                <img src={src} loading="lazy" className="card-img-top" alt="..." />
             </div>
             <div className="card-body">
                 <h5 className="card-title">{props.name}</h5>
