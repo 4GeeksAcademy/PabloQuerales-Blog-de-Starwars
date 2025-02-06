@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { DetailedCardPeople } from "../component/detailedCardPeople";
 import { DetailedCardPlanets } from "../component/detailedCardPlanets";
 import { DetailedCardStarships } from "../component/detailedCardStarships";
